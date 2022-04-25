@@ -1,33 +1,35 @@
 # Install Packages
 1. Log into the Control Plane Node (Note: The following steps must be performed on all three nodes.
 1. Create configuration file for containerd:
-bash
+```bash
 cat <<EOF sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
 EOF
+```
 3. Load modules:
-sudo odprobe overlay
-sudo modprobe br_netfilter
+>sudo odprobe overlay<br>
+>sudo modprobe br_netfilter
 4. Set system configurations for Kubernetes networking:
-bash
+```bash
 cat <<EOF | sudo tee /etc/sysct1.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
+```
 5. Apply new settings:<br>
-sudo sysctl --system
+`sudo sysctl --system`
 6. Install containerd:<br>
-sudo apt-get update && sudo apt-get install -y containerd
+`sudo apt-get update && sudo apt-get install -y containerd`
 7. Cresta default configuration file for containerd:<br>
-"sudo mkdir -p /etc/containerd
+`sudo mkdir -p /etc/containerd`
 8. Generate default containerd configuration and save to the newly created default file:<br>
-sudo containerd config default | sudo tee /etc/containerd/config.toml
+`sudo containerd config default | sudo tee /etc/containerd/config.toml`
 9. Restart containerd to ensure now configuration file usage:<br>
-sudo systemctl restart containerd
+`sudo systemctl restart containerd`
 1. Verify that containerd is running.<br>
-sudo systemctl status containerd
+`sudo systemctl status containerd`
 
 
 ------
