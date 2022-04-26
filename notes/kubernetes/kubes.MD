@@ -30,75 +30,51 @@ EOF
 `sudo systemctl restart containerd`
 1. Verify that containerd is running.<br>
 `sudo systemctl status containerd`
-
-
-------
-
-KB.MD ClUsers\utzb\Downloads\Cubes\K8.MDB # Install Packages
-1 11
-sudo sysctl --system
-6. Install containerd: <br>
-sudo apt-get update && sudo apt-get install -y containerd
-7. Create default configuration file for containerd:<br>
-"sudo mkdir -p /etc/containerd
-8. Generate default containerd configuration and save to the newly created default file:<br>
-sudo containerd config default sudo tee /etc/containerd/config.toml
-9. Restart containers to ensure new configuration file usage:<br>
-sudo systemctl restart containerd
-1. Verify that containerd is running.<br>
-sudo systemctl status containerd
 1. Disable swap:<br>
-sudo swapoff -a
+`sudo swapoff -a`
 1. Disable swap on startup in /etc/fstab:<br>
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/8' /etc/fstab
+`sudo sed -i '/ swap / s/^\(.*\)$/#\1/8' /etc/fstab`
 1. Install dependency packages:<br>
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+`sudo apt-get update && sudo apt-get install -y apt-transport-https curl`
 1. Download and add GPG key:<br>
-'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add-
+`'curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -`
 1. Add Kubernetes to repository list:<br>
-bash
+```bash
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
+```
 16. Update package listings:<br>
-sudo apt-get update
+`sudo apt-get update`
 1. Insta11 Kubernetes packages
-(Note: If you get a dpkg lock message, just wait a minute or two before trying the command again):
-sudo apt-get install -y kubelet-1.23.0-e8 kubeadm=1.23.0-e8 kubectl=1.23.6-00
+`sudo apt-get install -y kubelet-1.23.0-e8 kubeadm=1.23.0-e8 kubectl=1.23.6-00`
 1. Turn off automatic updates:
-sudo apt-mark hold kubelet kubeade kubects
-Log into both Worker Modes to perform previous steps.
+`sudo apt-mark hold kubelet kubeade kubects`
+
+------
+
+
+
 # Initialize the Cluster
-1. Initialize the Kubernetes cluster on the control plane node using kubeadm (Note: This is only
-
-
-
-_____
-
-sudo apt-get install -y kubelet-1.23.0-08 kubeadm=1.23.0-60 kubectl=1.23.0-00
-1. Turn off automatic updates:
-sudo apt-mark hold kubelet kubeade kubect)
-Log into both Worker Nodes to perform previous steps.
-# Initialize the Cluster
-1. Initialize the Kubernetes cluster on the control plane node using kubeadu (Note: This is only
-performed on the Control Plane Node):
-sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0
+1. Initialize the Kubernetes cluster on the control plane node using kubeadm (Note: This is only performed on the Control Plane Node):
+`sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0`
 1. Set kubect access:
-bash
+```bash
 mkdir -p SHONE/.kube
 sudo cp i /etc/kubernetes/admin.conf SHOME/.kube/config
 sudo chow $(id -u):$(id -B) SHOME/.kube/config
+```
 1. Test access to cluster:<br>
-kubectl get nodes
+`kubectl get nodes`
 # Install the Calico Network Add-On
 1. On the Control Plane Mode, install Calico Networking:<br>
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+`kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml`
 2. Check status of the control plane node:<br>
-kubectl get nodes
+`kubectl get nodes`
 # Join the Worker Nodes to the Cluster
 1. In the Control Plane Mode, create the token and copy the kubeadu join command (NOTE: The join
 comand can also be found in the output from kubeada init command): <br>
-kubeadm token create --print-join-command
+`kubeadm token create --print-join-command`
 1. In both Worker Modes, paste the kubeado join command to join the cluster. Use sudo to run it as
 root:
 sudo kubeadm join ...'
@@ -175,9 +151,9 @@ curl <nginx IP address>
 kubectl logs nginx
 EEEEEE
 kubeadm
+    
 
-
- https://kubernetes.io/docs/
-: https://github.com/kubernetes/
+https://kubernetes.io/docs/
+https://github.com/kubernetes/
 https://kubernetes.io/blog/ https://helm.sh/docs/
 
