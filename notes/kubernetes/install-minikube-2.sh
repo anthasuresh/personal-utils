@@ -9,9 +9,12 @@ sudo mv ./minikube /usr/local/bin/
 minikube config set driver docker
 
 #Install Kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin
-kubectl config use-context minikube
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/
+minikube delete
+minikube start
+echo "$(kubectl config use-context minikube)"
 
 #Install HELM
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh 
