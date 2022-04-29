@@ -11,7 +11,7 @@
 > **Master / Control-Plane**
 > 1. _API Server_ [ kube-apiserver ]
 >    - front end for the Kubernetes control plane
->    - 
+>    - Entry point to system ( Schedule / Query )
 > 2. _Scheduler_
 >    - Selects nodes to run newly created pod (with unassigened node)
 > 3. _etcd_
@@ -33,10 +33,27 @@
 >
 > 1. _Kubelet_
 >    - Agent running on each node
+>    - PodSpecs - Ensure container health
+>    - Only manage container created by Kubernetes
 > 2. _Kube-Proxy_
->    - sdsd
+>    - Network proxy on each node maintaining N/W rules
+>    - Implements part of `SERVICE`
 > 3. _Container Runtime_ [ Docker / containerd ]
->    - sdsd
+>    - Software responsible for running containers
+
+> **ADDONS**<br>
+> Implements cluster features using  Kubernetes resources (DaemonSet, Deployment, etc)
+> ## _DNS_
+>   - Required in every node
+>   - Containers created by K8s, automatically has this DNS Server
+> ## _WEB UI_
+  
+> **Kubernetes Objects**
+>   - Persistent entities in K8s
+>   - Represent state of cluster
+>   - - `SPEC`    -- User defined
+>      - `STATUS` -- K8s modifies it based on system state
+
 
 ---
 * Main Features 
@@ -85,96 +102,7 @@
 
 
  
- in my example i have docker but it could be
-some other technology as well so because application pods have containers running inside a container runtime needs to be
-installed on every node but the process that actually schedules
-those con those pods and the containers then underneath is cubelet which is a
-process of kubernetes itself unlike container runtime that has interface with both container runtime
-and the machine the node itself because at the end of the day cubelet is responsible for taking that
-configuration and actually running a pod or starting a pod with a container
-inside and then assigning resources from that node to the container like cpu ram
-and storage resources so usually kubernetes cluster is made up of multiple nodes which also must have
-container runtime and kubelet services installed and you can have hundreds of those worker nodes which will run other
-parts and containers and replicas of the existing parts like my app and database
-parts in this example and the way that communication between them works is using services which is sort of a load
-balancer that basically catches the request directed to the pod or the application like database for example
-and then forwards it to the respective pod and the third process that is responsible for forwarding requests from
-services to pods is actually cube proxy that also must be installed on every
-node and q proxy has actually intelligent forwarding logic inside that
-makes sure that the communication also works in a performant way with low
-overhead for example if an application my app replica is making a requested
-database instead of service just randomly forwarding the request to any replica it will actually forward it to
-the replica that is running on the same node as the pod that initiated the request thus this way avoiding the
-network overhead of sending the request to another machine so to summarize two
-kubernetes processes cubelet and q proxy must be installed on every
-kubernetes worker node along with an independent container runtime in order for kubernetes cluster to function
-properly but now the question is how do you interact with this cluster or do you decide on which node a new application
-pod or database pod should be scheduled or if a replica pod dies what process
-actually monitors it and then reschedules it or restarts it again or when we add another server how does it
-join the cluster to become another node and get parts and other components created on it and the answer is all
-these managing processes are done by master nodes
-so master servers or masternodes have completely different processes
-running inside and these are four processes that run on every masternode that control the cluster state and the
-worker nodes as well so the first service is api server so
-when you as a user want to deploy a new application in a kubernetes cluster you interact with the api server
-using some client it could be a ui like kubernetes dashboard could be command line tool like cubelet or a kubernetes
-api so api server is like a cluster gateway which gets the initial request
-of any updates into the cluster or even the queries from the cluster and it also
-acts as a gatekeeper for authentication to make sure that only authenticated and authorized
-requests get through to the cluster that means whenever you want to schedule new
-pods deploy new applications create new service or any other components you have
-to talk to the api server on the master node and the api server then validate
-your request and if everything is fine then it will forward your request to
-other processes in order to schedule the pod or create this component that you requested and
-also if you want to query the status of your deployment or the cluster health etc you make a request to the api server
-and it gives you the response which is good for security because you just have one entry point into the cluster another
-master process is a scheduler so as i mentioned if you send an api server a request to schedule
-a new pod api server after it validates your request will actually hand it over
-to the scheduler in order to start that application pod on one of the worker nodes
-and of course instead of just randomly assigning it to any node schedule has this whole
-intelligent way of deciding on which specific worker node the next
-pod will be scheduled or next component will be scheduled so first it will look
-at your request and see how much resources the application that you want
-to schedule will need how much cpu how much ram and then it it's going to look at
-and it's going to go through the worker nodes and see the available resources on each one of them and if it says
-that one node is the least busy or has the most resources
-available it will schedule the new part on that note an important point here is
-that scheduler just decides on which node a new pod will be scheduled the
-process that actually does the scheduling that actually starts that pod with a container is the cubelet so it
-gets the request from the scheduler and executes that request on that node the
-next component is controller manager which is another crucial component
-because what happens when parts die on any node there must be a way to detect
-that the nodes died and then reschedule those parts as soon as possible so what
-controller manager does is detect state changes like crashing of pods for
-example so when pods die controller manager detects that and tries to
-recover the cluster state as soon as possible and for that it makes a request for the
-scheduler to reschedule those dead parts and the same cycle happens here where the scheduler decides based on the
-resource calculation which worker nodes should restart those spots again and
-makes requests to the corresponding cubelets on those worker nodes to actually restart the pods and finally
-the last master process is etcd which is a key value store of a cluster state you
-can think of it as a cluster brain actually which means that every change
-in the cluster for example when a new pod gets scheduled when a pod dies all
-of these changes get saved or updated into this key value store of etcd and
-the reason why lcd store is a cluster brain is because all of this mechanism
-with scheduler controller manager etc works because of its data
-so for example how does scheduler know what resources are available on on each
-worker node or how does controller manager know that a cluster state changed in some way for example pods
-died or that cubelet restarted new pods upon the request of a scheduler or when
-you make a query request to api server about the cluster health or for example
-your application deployment state where does api server get all this state
-information from so all of this information is stored in xd cluster what
-is not stored in the lcd key value store is the actual application data for example
-if you have a database application running inside of a cluster the data
-will be stored somewhere else not in the ncd this is just a cluster state information which is used for master
-processes to communicate with them work processes and vice versa so now you
-probably already see that master processes are absolutely crucial for the cluster operation especially the lcd
-store which contains some data must be reliably stored or replicated so in
-practice kubernetes cluster is usually made up of multiple masters where each
-masternode runs its master processes where of course the api server is load
-balanced and the lcd store forms a distributed storage across all the master nodes
-so now that we saw what processes run on worker nodes and masternodes let's actually have a look
-at a realistic example of a cluster setup so in a very small cluster you
-would probably have two masternodes and three worker nodes also to note here the
+two masternodes and three worker nodes also to note here the
 hardware resources of master and node servers actually differ the master
 processes are more important but they actually have less load of work so they
 need less resources like cpu ram and storage whereas the worker nodes do the
@@ -1927,9 +1855,24 @@ valuable knowledge from this course if you want to learn about modern devops too
 on that topic and subscribe to my channel for more content also if you want to stay connected you
 can follow me on social media or join the private facebook group i would love to see you there
 
+---
 
+## References
 
+- [Kubes Cheetsheet1](https://medium.com/hashmapinc/30-second-kubernetes-concepts-cheat-sheet-98ba813194cb)
+- [ExamSimu-1](https://www.youtube.com/watch?v=X48VuDVv0do)
+- [Kubes Cheetsheet](https://cheatography.com//gauravpandey44/cheat-sheets/kubernetes-k8s/pdf/)
+- [Katacode Kubes](https://www.katacoda.com/courses/kubernetes)
+- [ExamSimulator](https://www.youtube.com/watch?v=9UqkWcdy140)
+- [CKAD-Exercise](https://github.com/dgkanatsios/CKAD-exercises)
+- [CKAD-Bookmarks](https://github.com/reetasingh/CKAD-Bookmarks)
+- [bb-tutorials-and-thoughts](https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552)
 
-https://medium.com/hashmapinc/30-second-kubernetes-concepts-cheat-sheet-98ba813194cb
-https://www.youtube.com/watch?v=X48VuDVv0do
-https://cheatography.com//gauravpandey44/cheat-sheets/kubernetes-k8s/pdf/
+## Installation
+- [MiniKube](https://minikube.sigs.k8s.io/docs/start/)
+- [Hyperv](https://minikube.sigs.k8s.io/docs/drivers/hyperv/)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
+- Powershell tweaks
+- > $profile<br>set-alias minikube minukibe.exe<br> set-alias kubectl kubectl.exe
+- - Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+- - Every PS session `kubectl completion powershell | Out-String |Invoke-Expression`
