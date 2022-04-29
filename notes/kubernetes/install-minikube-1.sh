@@ -9,7 +9,7 @@ echo -e "\nsudo add-apt-repository 'deb [arch=amd64] https://download.docker.com
 sudo apt-get update -y
 echo -e "\nsudo apt-get update -y\n"
 echo -e "$(sudo apt-get install -y docker-ce)"
-echo -e "\nsudo apt-get install -y docker-ce\n"
+echo -e "\nsudo apt-get install -y docker-ce\n\n\t\t===> type exit <=="
 echo "$(sudo usermod -aG docker $USER && newgrp docker)"
 echo -e "\nsudo usermod -aG docker $USER && newgrp docker\n"
 git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git
