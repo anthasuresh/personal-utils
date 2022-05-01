@@ -118,7 +118,7 @@
 - [bb-tutorials-and-thoughts](https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552)
 
 ## Installation
-> Regular
+> `Regular`
 > - [MiniKube](https://minikube.sigs.k8s.io/docs/start/)
 > - [Hyperv](https://minikube.sigs.k8s.io/docs/drivers/hyperv/)
 > - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
@@ -127,7 +127,8 @@
 > - - Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 > - - Every PS session `kubectl completion powershell | Out-String |Invoke-Expression`
 <br>
-> Through script
+
+> `Through script`
 > - Install any WSL (preferably ubuntu)
 > - Download and execute the script in order 
 > - install-minikube-1.sh (**Follow the instructions on screen**)
