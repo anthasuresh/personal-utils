@@ -118,7 +118,7 @@
 - [bb-tutorials-and-thoughts](https://medium.com/bb-tutorials-and-thoughts/practice-enough-with-these-questions-for-the-ckad-exam-2f42d1228552)
 
 ## Installation
-> `Regular`
+> `Regular` ` **Not Preferred** `
 > - [MiniKube](https://minikube.sigs.k8s.io/docs/start/)
 > - [Hyperv](https://minikube.sigs.k8s.io/docs/drivers/hyperv/)
 > - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
