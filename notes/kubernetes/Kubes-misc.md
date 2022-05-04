@@ -1,4 +1,8 @@
 # Miscellaneous Beginner Commands
+> **K8s doc similar to man pages**
+<br>kubectl explain <resource> &rarr; `kubectl explain deployment`
+
+
 
 Usage|Commands
 :---|---:
