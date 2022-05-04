@@ -99,11 +99,11 @@
 > * Managing statefulSets in K8s is tedious<br>
 > Maintain stateless in K8s pods and StatefulSets / DB's outside K8s
 
-
-
- 
-<br><br><br><br>
-
+---
+> Deployment manages a <br>⤵️ 
+> > ReplicaSet manages multiple <br>⤵️
+> > > Pod - abstraction of <br>⤵️ 
+> > > > Containers 
 ---
 
 ## References
