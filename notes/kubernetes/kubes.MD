@@ -1,5 +1,5 @@
-# Kubernetes Architecture
->### Why Kubernetes ?
+# Kubernetes (k8s) Architecture
+>### Why k8s?
 >    ![](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg)
 
 > ### Types of nodes
@@ -10,7 +10,7 @@
 
 > **Master / Control-Plane**
 > 1. _API Server_ [ kube-apiserver ]
->    - front end for the Kubernetes control plane
+>    - front end for the k8s control plane
 >    - Entry point to system ( Schedule / Query )
 > 2. _Scheduler_
 >    - Selects nodes to run newly created pod (with unassigened node)
@@ -34,7 +34,7 @@
 > 1. _Kubelet_
 >    - Agent running on each node
 >    - PodSpecs - Ensure container health
->    - Only manage container created by Kubernetes
+>    - Only manage container created by k8s
 > 2. _Kube-Proxy_
 >    - Network proxy on each node maintaining N/W rules
 >    - Implements part of `SERVICE`
@@ -42,13 +42,13 @@
 >    - Software responsible for running containers
 
 > **ADDONS**<br>
-> Implements cluster features using  Kubernetes resources (DaemonSet, Deployment, etc)
+> Implements cluster features using  k8s resources (DaemonSet, Deployment, etc)
 > ## _DNS_
 >   - Required in every node
 >   - Containers created by K8s, automatically has this DNS Server
 > ## _WEB UI_
   
-> **Kubernetes Objects**
+> **k8s Objects**
 >   - Persistent entities in K8s
 >   - Represent state of cluster
 >   - - `SPEC`    -- User defined
@@ -67,7 +67,7 @@
 .
 
 > **Pod**
->- Smallest unit of kubernetes [Abstraction over a container]
+>- Smallest unit of k8s [Abstraction over a container]
 >- Creates this running
 >- Gets it own IP address
 
