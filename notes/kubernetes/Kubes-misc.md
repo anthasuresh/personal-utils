@@ -1,6 +1,6 @@
 # Miscellaneous Beginner Commands
 > **K8s doc similar to man pages**
-<br>kubectl explain <resource> &rarr; `kubectl explain deployment`
+<br>kubectl explain <resource> &rarr; `kubectl explain deployment`<br><br>kubectl api-resources --sort-by=kind | awk '/true|false/{gsub("^.*(true|false) +",""); print }'
 
 
 

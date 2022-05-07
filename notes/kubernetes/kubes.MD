@@ -52,7 +52,7 @@
 >   - Persistent entities in K8s
 >   - Represent state of cluster
 >   - - `SPEC`    -- User defined
->      - `STATUS` -- K8s modifies it based on system state
+>     - `STATUS` -- K8s modifies it based on system state
 
 
 ---
@@ -104,6 +104,17 @@
 > > ReplicaSet manages multiple <br>⤵️
 > > > Pod - abstraction of <br>⤵️ 
 > > > > Containers 
+
+> Deployment Strategy
+> - Rolling Update Deployment
+  ![](https://images.ctfassets.net/23aumh6u8s0i/LxDl5amQZC2znii0JLZuw/87f42c35b5ba35ac1550f572d23ba943/01_rolling-deployment.jpg)
+
+> - Recreate Deployment
+  ![](https://images.ctfassets.net/23aumh6u8s0i/1FVQm06ERSn67QJkI2zlfj/49ef78e46445aa7e6a7e54349e85e2b7/02_recreate-deployment.jpg)
+> - Blue Green Deployment
+  ![](https://images.ctfassets.net/23aumh6u8s0i/5vHYgyomFFI2h4okBQyUTH/98d685900acef7c6c1abdea444b947e1/03_blue-green.jpg)
+> - Canary Deployment
+  ![]()
 ---
 
 ## References
