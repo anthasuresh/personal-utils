@@ -1,0 +1,5 @@
+alias c=clear
+alias l='ls -trl'
+
+alias ac='source <(minikube completion bash) && source<(kubectl completion bash)
+
