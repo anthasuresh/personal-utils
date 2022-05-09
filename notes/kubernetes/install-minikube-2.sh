@@ -21,7 +21,9 @@ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_
 chmod 700 get_helm.sh 
 ./get_helm.sh
 
-
+echo "cleaning up interim files"
+rm -rf ubuntu-wsl2-systemd-script
+rm get_helm.sh 
 echo -e "\n\n\t\tOpen a new terminal and type minikube / kubectl\n\n"
 
 
