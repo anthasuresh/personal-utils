@@ -9,7 +9,7 @@ echo -e "\nsudo add-apt-repository 'deb [arch=amd64] https://download.docker.com
 sudo apt-get update -y
 echo -e "\nsudo apt-get update -y\n"
 echo -e "$(sudo apt-get install -y docker-ce)"
-echo -e "\nsudo apt-get install -y docker-ce\n\n\t\t===> type exit <=="
+echo -e "\nsudo apt-get install -y docker-ce\n\n\t\t===> \033[01;32mtype exit\033[0m <=="
 echo "$(sudo usermod -aG docker $USER && newgrp docker)"
 echo -e "\nsudo usermod -aG docker $USER && newgrp docker\n"
 git clone https://github.com/DamionGans/ubuntu-wsl2-systemd-script.git
@@ -19,10 +19,7 @@ echo -e "\ncd ubuntu-wsl2-systemd-script/\n"
 bash ubuntu-wsl2-systemd-script.sh
 echo -e "\nbash ubuntu-wsl2-systemd-script.sh\n"
 
-echo -e "Restart the LxssManager in Windows to initialize systemctl with WSL\n\t\tWindows-Key --> services \n\n\t\tThen continue with curl install-minikube-2.sh "
-
-
-
+echo -e "\n\nPlease follow the below steps.  \n\t👉 Windows-Key --> services \n\t👉 Restart \033[01;32mLxssManager\033[0m service \n\t👉 Continue with \033[01;32minstall-minikube-2.sh\033[0m "
 
 
 
