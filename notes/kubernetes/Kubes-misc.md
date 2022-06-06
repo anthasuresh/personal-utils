@@ -12,10 +12,10 @@ Access api's via curl / browser| `kubectl proxy --port=8080`
 |**CRUD Operations**||
 :---|---:
 |Deployment<br>_no_ ~update~ | `kubectl (create\|edit\|delete) deployment [deploymentName]`|
-|
 
 
-Status : kubectl get (nodes|deployment|replicaset|pods|service)
+
+Status : kubectl get (nodes|deployment|replicaset|pods|service)<br>
 Debugging :
 - kubectl log [podName]
 - kubectl describe [podName]
