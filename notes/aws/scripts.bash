@@ -1,0 +1,1 @@
+curl "https://aws.amazon.com/api/dirs/items/search?item.directoryId=aws-products&sort_by=item.additionalFields.productCategory&size=250&item.locale=en_US" | jq '.items[].item.additionalFields| .productCategory,.productName,.productSummary' | paste - - - | column
