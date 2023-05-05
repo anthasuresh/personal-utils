@@ -1,0 +1,170 @@
+[
+    {
+        "name": "Java",
+        "age": 27,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "JVM"
+    },
+    {
+        "name": "Scala",
+        "age": 19,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "FUNCTIONAL",
+        "ecosystem": "JVM"
+    },
+    {
+        "name": "Groovy",
+        "age": 20,
+        "side": "SERVER",
+        "type": "DYNAMIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "JVM"
+    },
+    {
+        "name": "Python",
+        "age": 33,
+        "side": "SERVER",
+        "type": "DYNAMIC",
+        "paradigm": "FUNCTIONAL",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "Bash",
+        "age": 34,
+        "side": "SHELL",
+        "type": "NA",
+        "paradigm": "PROCEDURAL",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "Ksh-",
+        "age": 40,
+        "side": "SHELL",
+        "type": "NA",
+        "paradigm": "PROCEDURAL",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "Perl",
+        "age": 36,
+        "side": "SHELL",
+        "type": "DYNAMIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "Powershell",
+        "age": 17,
+        "side": "SERVER",
+        "type": "DYNAMIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "Ruby",
+        "age": 28,
+        "side": "SERVER",
+        "type": "DYNAMIC",
+        "paradigm": "FUNCTIONAL",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "Javascript",
+        "age": 28,
+        "side": "CLIENT",
+        "type": "DYNAMIC",
+        "paradigm": "SCRIPTING",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "TypeScript",
+        "age": 11,
+        "side": "CLIENT",
+        "type": "STATIC",
+        "paradigm": "SCRIPTING",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "NodeJs",
+        "age": 14,
+        "side": "SERVER",
+        "type": "DYNAMIC",
+        "paradigm": "SCRIPTING",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "Sed",
+        "age": 49,
+        "side": "SHELL",
+        "type": "NA",
+        "paradigm": "SCRIPTING",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "Awk",
+        "age": 46,
+        "side": "SHELL",
+        "type": "NA",
+        "paradigm": "SCRIPTING",
+        "ecosystem": "CLI"
+    },
+    {
+        "name": "C++",
+        "age": 38,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "C",
+        "age": 51,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "PROCEDURAL",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "Haskell",
+        "age": 33,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "FUNCTIONAL",
+        "ecosystem": "OTHER"
+    },
+    {
+        "name": "Kotlin",
+        "age": 12,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "JVM"
+    },
+    {
+        "name": "C#",
+        "age": 23,
+        "side": "SERVER",
+        "type": "STATIC",
+        "paradigm": "OBJECT_ORIENTED",
+        "ecosystem": "DOT_NET"
+    },
+    {
+        "name": "SAS",
+        "age": 47,
+        "side": "SERVER",
+        "type": "NA",
+        "paradigm": "PROCEDURAL",
+        "ecosystem": "DB"
+    },
+    {
+        "name": "SQL",
+        "age": 49,
+        "side": "SERVER",
+        "type": "NA",
+        "paradigm": "PROCEDURAL",
+        "ecosystem": "DB"
+    }
+]
