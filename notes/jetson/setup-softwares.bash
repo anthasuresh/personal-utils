@@ -20,6 +20,7 @@ function setup_venv(){
   python3 -m venv ai
   [ -f ~/venvs/ai/bin/activate ] && source ~/venvs/ai/bin/activate || { echo "Error: venv missing" ; exit 1 ; }
   pip install --upgrade setuptools wheel pip
+  pip install strands-agents strands-agents-tools
 }
 
 function install_ollama() {
